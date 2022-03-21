@@ -34,3 +34,6 @@ short_url_service.imll
 
 mvnw*
 .mvn
+
+center.log
+standby.log

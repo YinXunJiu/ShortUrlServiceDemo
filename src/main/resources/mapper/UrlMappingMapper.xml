@@ -11,7 +11,8 @@
         <!--@mbg.generated-->
         id, source_url
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap"
+            resultType="org.feidian.short_url_service.domain.UrlMapping">
         <!--@mbg.generated-->
         select
         <include refid="Base_Column_List"/>

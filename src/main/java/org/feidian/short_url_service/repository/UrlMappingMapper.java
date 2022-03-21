@@ -21,7 +21,5 @@ public interface UrlMappingMapper {
 
     int updateByPrimaryKey(UrlMapping record);
 
-    Integer selectMaxId();
-
     Integer selectIdBySourceUrl(String sourceUrl);
 }
