@@ -1,22 +1,27 @@
-package com.feidian.short_url_service.api;
+package org.feidian.short_url_service.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.feidian.short_url_service.constant.Constant;
-import com.feidian.short_url_service.domain.UrlMapping;
-import com.feidian.short_url_service.request.ShortUrlRequest;
-import com.feidian.short_url_service.response.Response;
-import com.feidian.short_url_service.response.Responses;
-import com.feidian.short_url_service.service.UrlMappingService;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.feidian.short_url_service.constant.Constant;
+import org.feidian.short_url_service.domain.UrlMapping;
+import org.feidian.short_url_service.request.ShortUrlRequest;
+import org.feidian.short_url_service.response.Response;
+import org.feidian.short_url_service.response.Responses;
+import org.feidian.short_url_service.service.UrlMappingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author yinchao
@@ -28,6 +33,8 @@ import java.util.regex.Pattern;
 public class ShortUrlServiceController {
     @Autowired
     private UrlMappingService urlMappingService;
+    @Resource
+    private Constant constant;
 
     /**
      * 创建一个短链接
@@ -37,15 +44,17 @@ public class ShortUrlServiceController {
      */
     @PostMapping("/create")
     public Response createShortUrl(@RequestBody ShortUrlRequest shortUrlRequest) {
-        if(shortUrlRequest.getSourceUrl().contains("short_url_service")){
+        if (shortUrlRequest.getSourceUrl().contains("short_url_service")) {
             return Responses.errorResponse("源链接存在不允许字符");
         }
         Integer result = urlMappingService.selectIdBySourceUrl(shortUrlRequest.getSourceUrl());
         if (result != null) {
-            return Responses.errorResponse("this url has been convert, the short url is " + Constant.PREFIX_URL+result);
+            return Responses.errorResponse(
+                "this url has been convert, the short url is " + constant.getPrefixUrl() + result);
         }
         Map<String, Object> data = new HashMap<>(1);
-        data.put("result", Constant.PREFIX_URL+urlMappingService.insert(new UrlMapping(null, shortUrlRequest.getSourceUrl())));
+        data.put("result",
+            constant.getPrefixUrl() + urlMappingService.insert(new UrlMapping(null, shortUrlRequest.getSourceUrl())));
         return Responses.successResponse(data);
     }
 
@@ -59,7 +68,7 @@ public class ShortUrlServiceController {
     public Response findSourceUrl(@PathVariable("id") String id, HttpServletResponse httpServletResponse) {
         log.info("invoke the api of short_url_service/find/{}", id);
         // id为空或者为非法字符
-        if (id == null || !Pattern.matches("^[0-9]+$", String.valueOf(id))) {
+        if (id == null || !Pattern.matches("^[0-9]+$", id)) {
             log.error("invalid character");
             return Responses.errorResponse("非法字符");
         }
@@ -76,6 +85,6 @@ public class ShortUrlServiceController {
         Map<String, String> data = new HashMap<>(1);
         data.put("result", message);
         httpServletResponse.sendRedirect(message);
-        return Responses.successResponse();
+        return Responses.successResponse(data);
     }
 }

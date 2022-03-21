@@ -1,10 +1,10 @@
-package com.feidian.short_url_service.response;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+package org.feidian.short_url_service.response;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * @author yinchao

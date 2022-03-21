@@ -1,4 +1,4 @@
-package com.feidian.short_url_service.response;
+package org.feidian.short_url_service.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
