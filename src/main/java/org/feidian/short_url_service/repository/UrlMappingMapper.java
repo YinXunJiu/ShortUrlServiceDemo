@@ -1,7 +1,7 @@
-package com.feidian.short_url_service.repository;
+package org.feidian.short_url_service.repository;
 
-import com.feidian.short_url_service.domain.UrlMapping;
 import org.apache.ibatis.annotations.Mapper;
+import org.feidian.short_url_service.domain.UrlMapping;
 
 /**
  * @author yinchao

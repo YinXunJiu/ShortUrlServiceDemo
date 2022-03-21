@@ -1,11 +1,10 @@
-package com.feidian.short_url_service.service;
-
-import com.feidian.short_url_service.constant.Constant;
-import com.feidian.short_url_service.domain.UrlMapping;
-import com.feidian.short_url_service.repository.UrlMappingMapper;
-import org.springframework.stereotype.Service;
+package org.feidian.short_url_service.service;
 
 import javax.annotation.Resource;
+
+import org.feidian.short_url_service.domain.UrlMapping;
+import org.feidian.short_url_service.repository.UrlMappingMapper;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yinchao
