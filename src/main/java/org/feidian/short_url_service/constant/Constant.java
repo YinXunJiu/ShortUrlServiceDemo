@@ -1,8 +1,6 @@
 package org.feidian.short_url_service.constant;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
+import org.feidian.short_url_service.service.AddressUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +15,7 @@ public class Constant {
     private int port;
 
     public String getPrefixUrl() {
-        String prefix = null;
-        try {
-            prefix = String.format(PREFIX_URL_FORMATTER, InetAddress.getLocalHost().getHostAddress(), port);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        return prefix;
+        return String.format(PREFIX_URL_FORMATTER, AddressUtils.getHostIp(), port);
     }
 
 }

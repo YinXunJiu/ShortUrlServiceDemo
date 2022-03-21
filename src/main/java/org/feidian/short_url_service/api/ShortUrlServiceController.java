@@ -15,7 +15,6 @@ import org.feidian.short_url_service.request.ShortUrlRequest;
 import org.feidian.short_url_service.response.Response;
 import org.feidian.short_url_service.response.Responses;
 import org.feidian.short_url_service.service.UrlMappingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/short_url_service")
 @Slf4j(topic = "ShortUrlServiceController")
 public class ShortUrlServiceController {
-    @Autowired
+    @Resource
     private UrlMappingService urlMappingService;
+
     @Resource
     private Constant constant;
 
