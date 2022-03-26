@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.feidian.short_url_service.repository.UrlMappingMapper">
-    <resultMap id="BaseResultMap" type="org.feidian.short_url_service.domain.UrlMapping">
+<mapper namespace="org.feidian.url.service.repository.UrlMappingMapper">
+    <resultMap id="BaseResultMap" type="org.feidian.url.service.domain.UrlMapping">
         <!--@mbg.generated-->
         <!--@Table url_mapping-->
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -12,7 +12,7 @@
         id, source_url
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap"
-            resultType="org.feidian.short_url_service.domain.UrlMapping">
+            resultType="org.feidian.url.service.domain.UrlMapping">
         <!--@mbg.generated-->
         select
         <include refid="Base_Column_List"/>
@@ -24,13 +24,13 @@
         delete from url_mapping
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.feidian.short_url_service.domain.UrlMapping"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.feidian.url.service.domain.UrlMapping"
             useGeneratedKeys="true">
         insert into url_mapping (source_url)
         values (#{sourceUrl,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
-            parameterType="org.feidian.short_url_service.domain.UrlMapping" useGeneratedKeys="true">
+            parameterType="org.feidian.url.service.domain.UrlMapping" useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into url_mapping
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -44,7 +44,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="org.feidian.short_url_service.domain.UrlMapping">
+    <update id="updateByPrimaryKeySelective" parameterType="org.feidian.url.service.domain.UrlMapping">
         <!--@mbg.generated-->
         update url_mapping
         <set>
@@ -54,7 +54,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="org.feidian.short_url_service.domain.UrlMapping">
+    <update id="updateByPrimaryKey" parameterType="org.feidian.url.service.domain.UrlMapping">
         <!--@mbg.generated-->
         update url_mapping
         set source_url = #{sourceUrl,jdbcType=VARCHAR}

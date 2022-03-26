@@ -1,9 +1,9 @@
-package org.feidian.short_url_service.configuration;
+package org.feidian.url.service.configuration;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.feidian.short_url_service.response.Response;
-import org.feidian.short_url_service.response.Responses;
+import org.feidian.url.service.response.Response;
+import org.feidian.url.service.response.Responses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

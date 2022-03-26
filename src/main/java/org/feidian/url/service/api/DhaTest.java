@@ -1,4 +1,4 @@
-package org.feidian.short_url_service.api;
+package org.feidian.url.service.api;
 
 import javax.annotation.Resource;
 

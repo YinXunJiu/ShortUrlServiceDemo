@@ -1,4 +1,4 @@
-package org.feidian.short_url_service.domain;
+package org.feidian.url.service.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

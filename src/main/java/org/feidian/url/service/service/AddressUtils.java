@@ -1,4 +1,4 @@
-package org.feidian.short_url_service.service;
+package org.feidian.url.service.service;
 
 import java.io.IOException;
 import java.net.InetAddress;

@@ -1,4 +1,4 @@
-package org.feidian.short_url_service.response;
+package org.feidian.url.service.response;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -23,23 +23,19 @@
         <setting name="useGeneratedKeys" value="True"/>
     </settings>
 
-    <environments default="development">
+    <!--    <environments default="development">-->
 
-        <environment id="development">
-            <!--使用了 JDBC 的提交和回滚设置，它依赖于从数据源得到的连接来管理事务作用域-->
-            <transactionManager type="JDBC"/>
-            <!--使用数据池，复用实例-->
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <!--                <property name="url" value="jdbc:mysql://localhost:3306/organization?serverTimezone=GMT%2B8"/>-->
-                <property name="url" value="jdbc:mysql://127.0.0.1"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-            </dataSource>
-        </environment>
-    </environments>
-
-    <mappers>
-        <mapper resource="mapper/UrlMappingMapper.xml"/>
-    </mappers>
+    <!--        <environment id="development">-->
+    <!--            &lt;!&ndash;使用了 JDBC 的提交和回滚设置，它依赖于从数据源得到的连接来管理事务作用域&ndash;&gt;-->
+    <!--            <transactionManager type="JDBC"/>-->
+    <!--            &lt;!&ndash;使用数据池，复用实例&ndash;&gt;-->
+    <!--            <dataSource type="POOLED">-->
+    <!--                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+    <!--                &lt;!&ndash;                <property name="url" value="jdbc:mysql://localhost:3306/organization?serverTimezone=GMT%2B8"/>&ndash;&gt;-->
+    <!--                <property name="url" value="jdbc:mysql://127.0.0.1"/>-->
+    <!--                <property name="username" value="root"/>-->
+    <!--                <property name="password" value="root"/>-->
+    <!--            </dataSource>-->
+    <!--        </environment>-->
+    <!--    </environments>-->
 </configuration>

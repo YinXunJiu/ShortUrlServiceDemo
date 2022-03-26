@@ -1,9 +1,9 @@
-package org.feidian.short_url_service.service;
+package org.feidian.url.service.service;
 
 import javax.annotation.Resource;
 
-import org.feidian.short_url_service.domain.UrlMapping;
-import org.feidian.short_url_service.repository.UrlMappingMapper;
+import org.feidian.url.service.domain.UrlMapping;
+import org.feidian.url.service.repository.UrlMappingMapper;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,6 +1,6 @@
-package org.feidian.short_url_service.constant;
+package org.feidian.url.service.constant;
 
-import org.feidian.short_url_service.service.AddressUtils;
+import org.feidian.url.service.service.AddressUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

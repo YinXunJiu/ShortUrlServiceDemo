@@ -1,4 +1,4 @@
-package org.feidian.short_url_service.api;
+package org.feidian.url.service.api;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.feidian.short_url_service.constant.Constant;
-import org.feidian.short_url_service.domain.UrlMapping;
-import org.feidian.short_url_service.request.ShortUrlRequest;
-import org.feidian.short_url_service.response.Response;
-import org.feidian.short_url_service.response.Responses;
-import org.feidian.short_url_service.service.UrlMappingService;
+import org.feidian.url.service.constant.Constant;
+import org.feidian.url.service.domain.UrlMapping;
+import org.feidian.url.service.request.ShortUrlRequest;
+import org.feidian.url.service.response.Response;
+import org.feidian.url.service.response.Responses;
+import org.feidian.url.service.service.UrlMappingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

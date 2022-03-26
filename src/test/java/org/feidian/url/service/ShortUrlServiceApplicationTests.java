@@ -1,4 +1,4 @@
-package org.feidian.short_url_service;
+package org.feidian.url.service;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
