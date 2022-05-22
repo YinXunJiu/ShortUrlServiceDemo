@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.feidian.url.service.constant.Constant;
 import org.feidian.url.service.domain.UrlMapping;
 import org.feidian.url.service.request.ShortUrlRequest;
@@ -18,6 +19,7 @@ import org.feidian.url.service.service.UrlMappingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +44,7 @@ public class ShortUrlServiceController {
      * @param shortUrlRequest 包括源短链接的请求
      * @return 返回操作信息, 如果已经产生过, 则返回原来的链接, 如果没有产生过, 则生成一个新的短链接
      */
-    @PostMapping("/create")
+    @PostMapping("/new")
     public Response createShortUrl(@RequestBody ShortUrlRequest shortUrlRequest) {
         if (shortUrlRequest.getSourceUrl().contains("short_url_service")) {
             return Responses.errorResponse("源链接存在不允许字符");
@@ -64,7 +66,7 @@ public class ShortUrlServiceController {
      * @return 错误信息或者重定向的源网站
      */
     @SneakyThrows
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public Response findSourceUrl(@PathVariable("id") String id, HttpServletResponse httpServletResponse) {
         log.info("invoke the api of short_url_service/find/{}", id);
         // id为空或者为非法字符
@@ -81,10 +83,35 @@ public class ShortUrlServiceController {
             log.info("没有找到对应短链接和源链接");
             return Responses.errorResponse("没有找到对应短链接和源链接");
         }
-        httpServletResponse.setStatus(302);
         Map<String, String> data = new HashMap<>(1);
         data.put("result", message);
-        httpServletResponse.sendRedirect(message);
+        return Responses.successResponse(data);
+    }
+
+    @PutMapping("/test/{id}")
+    public Response findAndUpdate(@PathVariable("id") String id) {
+        log.info("invoke the api of short_url_service/test/findAndUpdate/{}", id);
+        if (id == null || !Pattern.matches("^[0-9]+$", id)) {
+            log.error("invalid character");
+            return Responses.errorResponse("非法字符");
+        }
+        Integer primaryKey = Integer.valueOf(id);
+        String message = urlMappingService.findSourceUrl(primaryKey);
+        if (message == null) {
+            throw new RuntimeException("error id");
+        }
+        log.info("before update:{}", message);
+        UrlMapping record = new UrlMapping();
+        record.setId(primaryKey);
+        String afterAlter = RandomStringUtils.randomNumeric(6);
+        record.setSourceUrl(afterAlter);
+        int result = urlMappingService.updateByPrimaryKey(record);
+        if (result <= 0) {
+            throw new RuntimeException("update error");
+        }
+        assert urlMappingService.findSourceUrl(primaryKey).equals(afterAlter);
+        Map<String, String> data = new HashMap<>(1);
+        data.put("result", afterAlter);
         return Responses.successResponse(data);
     }
 }
